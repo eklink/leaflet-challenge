@@ -13,8 +13,8 @@ function createFeatures(earthquakeData) {
   // Define a function we want to run once for each feature in the features array
   // Give each feature a popup describing the place and time of the earthquake
   function onEachFeature(feature, layer) {
-    layer.bindPopup("<h3>" + feature.properties.place +
-      "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
+    layer.bindPopup("<h3>" + "Magnitude  " + feature.properties.mag +
+      "</h3><hr><p>" + "Earthquake Location:  " + feature.properties.place + "</p>");
   }
 
   // Create a GeoJSON layer containing the features array on the earthquakeData object
@@ -25,7 +25,7 @@ function createFeatures(earthquakeData) {
       return L.circleMarker(latlng, {
         radius: markerSize(feature.properties.mag),
         fillColor: colorRange(feature.properties.mag),
-        color: "black",
+        color: "pink",
         weight: 0.5,
         opacity: 0.5,
         fillOpacity: 0.8
@@ -74,7 +74,7 @@ function createMap(earthquakes) {
     center: [
       37.09, -95.71
     ],
-    zoom: 5,
+    zoom: 4,
     layers: [streetmap, earthquakes]
   });
 
@@ -113,27 +113,27 @@ function colorRange(magnituge) {
 
 switch (true) {
   case magnituge >= 5.0:
-    return 'red';
+    return 'darkpurple';
     break;
 
   case magnituge >= 4.0:
-    return 'orangered';
+    return 'darkblue';
     break;
   
   case magnituge >= 3.0:
-    return 'orange';
+    return 'purple';
     break;
 
   case magnituge >= 2.0:
-    return 'gold';
+    return 'blue';
     break;
 
   case magnituge >= 1.0:
-    return 'yellow';
+    return 'lightpurple';
     break;
 
   default:
-    return 'greenyellow';
+    return 'lightblue';
 };
 };
 
